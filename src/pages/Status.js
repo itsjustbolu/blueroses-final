@@ -5,25 +5,41 @@ import Table from "react-bootstrap/Table";
 
 function Status() {
   const [statusName, setStatusName] = useState("");
+  const [newStatusName, setNewStatusName] = useState("");
 
   const [statusList, setStatusList] = useState([]);
 
   useEffect(() => {
-    Axios.get(
-      "https://blueroses-final.herokuapp.com/api/status/get"
-    ).then((response) => {
-      setStatusList(response.data);
-    });
+    Axios.get("https://blueroses-final.herokuapp.com/api/status/get").then(
+      (response) => {
+        setStatusList(response.data);
+      }
+    );
   }, []);
 
   const submitStatus = () => {
-    Axios.post(
-      "https://blueroses-final.herokuapp.com/api/status/post",
-      {
-        statusName: statusName,
-      }
-    ).then(() => {
+    Axios.post("https://blueroses-final.herokuapp.com/api/status/post", {
+      statusName: statusName,
+    }).then(() => {
       alert("Successfully added status");
+    });
+  };
+
+  const updateStatus = (statusId) => {
+    Axios.put("https://blueroses-final.herokuapp.com/api/status/update", {
+      statusName: newStatusName,
+      statusId: statusId,
+    }).then((response) => {
+      setStatusList(
+        statusList.map((val) => {
+          return val.statusId == statusId
+            ? {
+                statusId: val.statusId,
+                statusName: newStatusName,
+              }
+            : val;
+        })
+      );
     });
   };
 
@@ -56,11 +72,11 @@ function Status() {
           />
         </div>
         <Button variant="dark" style={{ margin: "5px" }} onClick={submitStatus}>
-                        Add Status
-                      </Button>{" "}
-        <button onClick={submitStatus} type="submit" class="btn btn-primary">
           Add Status
-        </button>
+        </Button>{" "}
+        {/* <button onClick={submitStatus} type="submit" class="btn btn-primary">
+          Add Status
+        </button> */}
       </form>
       <br />
       <br />
@@ -81,7 +97,20 @@ function Status() {
                   <tr>
                     <td>{val.statusName}</td>
                     <td>
-                      <Button variant="warning" style={{ margin: "5px" }}>
+                      <input
+                        type="text"
+                        placeholder="enter new status"
+                        onChange={(event) => {
+                          setNewStatusName(event.target.value);
+                        }}
+                      />
+                      <Button
+                        variant="warning"
+                        style={{ margin: "5px" }}
+                        onClick={() => {
+                          updateStatus(val.statusId);
+                        }}
+                      >
                         Update
                       </Button>{" "}
                       <Button
