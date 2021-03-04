@@ -26,14 +26,45 @@ function App() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <Link to="/">Home</Link>
-            <Link to="/customers">Customers</Link>
-            <Link to="/employees">Employees</Link>
-            <Link to="/menu">Menu</Link>
-            <Link to="/payments">Payments</Link>
-            <Link to="/place-order">Place Order</Link>
-            <Link to="/suppliers">Suppliers</Link>
-            <Link to="/status">Status</Link>
+            <Link style={{ margin: "5px", paddingRight: "20px" }} to="/">
+              Home
+            </Link>
+            <Link
+              style={{ margin: "5px", paddingRight: "20px" }}
+              to="/customers"
+            >
+              Customers
+            </Link>
+            <Link
+              style={{ margin: "5px", paddingRight: "20px" }}
+              to="/employees"
+            >
+              Employees
+            </Link>
+            <Link style={{ margin: "5px", paddingRight: "20px" }} to="/menu">
+              Menu
+            </Link>
+            <Link
+              style={{ margin: "5px", paddingRight: "20px" }}
+              to="/payments"
+            >
+              Payments
+            </Link>
+            <Link
+              style={{ margin: "5px", paddingRight: "20px" }}
+              to="/place-order"
+            >
+              Place Order
+            </Link>
+            <Link
+              style={{ margin: "5px", paddingRight: "20px" }}
+              to="/suppliers"
+            >
+              Suppliers
+            </Link>
+            <Link style={{ margin: "5px", paddingRight: "20px" }} to="/status">
+              Status
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
