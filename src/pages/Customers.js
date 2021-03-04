@@ -25,46 +25,40 @@ export function Customers() {
   const [customerList, setCustomerList] = useState([]);
 
   useEffect(() => {
-    Axios.get(
-      "https://blueroses-deploy-heroku.herokuapp.com/api/customers/get"
-    ).then((response) => {
-      setCustomerList(response.data);
-    });
+    Axios.get("https://blueroses-final.herokuapp.com/api/customers/get").then(
+      (response) => {
+        setCustomerList(response.data);
+      }
+    );
   }, []);
 
   const submitCustomer = () => {
-    Axios.post(
-      "https://blueroses-deploy-heroku.herokuapp.com/api/customers/post",
-      {
-        firstName: firstName,
-        lastName: lastName,
-        address: address,
-        city: city,
-        state: state,
-        zipCode: zipCode,
-        phoneNumber: phoneNumber,
-        email: email,
-      }
-    ).then(() => {
+    Axios.post("https://blueroses-final.herokuapp.com/api/customers/post", {
+      firstName: firstName,
+      lastName: lastName,
+      address: address,
+      city: city,
+      state: state,
+      zipCode: zipCode,
+      phoneNumber: phoneNumber,
+      email: email,
+    }).then(() => {
       alert("Successfully added customer");
     });
   };
 
   const updateCustomer = (customerId) => {
-    Axios.put(
-      "https://blueroses-deploy-heroku.herokuapp.com/api/customers/update",
-      {
-        firstName: newFirstName,
-        lastName: newLastName,
-        address: newAddress,
-        city: newCity,
-        state: newState,
-        zipCode: newZipCode,
-        phoneNumber: newPhoneNumber,
-        email: newEmail,
-        customerId: customerId,
-      }
-    ).then((response) => {
+    Axios.put("https://blueroses-final.herokuapp.com/api/customers/update", {
+      firstName: newFirstName,
+      lastName: newLastName,
+      address: newAddress,
+      city: newCity,
+      state: newState,
+      zipCode: newZipCode,
+      phoneNumber: newPhoneNumber,
+      email: newEmail,
+      customerId: customerId,
+    }).then((response) => {
       setCustomerList(
         customerList.map((val) => {
           return val.customerId === customerId
@@ -87,7 +81,7 @@ export function Customers() {
 
   const deleteCustomer = (customerId) => {
     Axios.delete(
-      `https://blueroses-deploy-heroku.herokuapp.com/api/customers/delete/${customerId}`
+      `https://blueroses-final.herokuapp.com/api/customers/delete/${customerId}`
     ).then((response) => {
       setCustomerList(
         customerList.filter((val) => {

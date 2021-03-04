@@ -10,7 +10,7 @@ function Status() {
 
   useEffect(() => {
     Axios.get(
-      "https://blueroses-deploy-heroku.herokuapp.com/api/status/get"
+      "https://blueroses-final.herokuapp.com/api/status/get"
     ).then((response) => {
       setStatusList(response.data);
     });
@@ -18,7 +18,7 @@ function Status() {
 
   const submitStatus = () => {
     Axios.post(
-      "https://blueroses-deploy-heroku.herokuapp.com/api/status/post",
+      "https://blueroses-final.herokuapp.com/api/status/post",
       {
         statusName: statusName,
       }
@@ -29,7 +29,7 @@ function Status() {
 
   const deleteStatus = (statusId) => {
     Axios.delete(
-      `https://blueroses-deploy-heroku.herokuapp.com/api/status/delete/${statusId}`
+      `https://blueroses-final.herokuapp.com/api/status/delete/${statusId}`
     ).then((response) => {
       setStatusList(
         statusList.filter((val) => {

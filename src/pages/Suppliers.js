@@ -13,37 +13,34 @@ function Suppliers() {
   const [suppliersList, setSuppliersList] = useState([]);
 
   useEffect(() => {
-    Axios.get(
-      "https://blueroses-deploy-heroku.herokuapp.com/api/suppliers/get"
-    ).then((response) => {
-      setSuppliersList(response.data);
-    });
+    Axios.get("https://blueroses-final.herokuapp.com/api/suppliers/get").then(
+      (response) => {
+        setSuppliersList(response.data);
+      }
+    );
   }, []);
 
   useEffect(() => {
-    Axios.get(
-      "https://blueroses-deploy-heroku.herokuapp.com/api/menuitems/get"
-    ).then((response) => {
-      setMenuItemsList(response.data);
-    });
+    Axios.get("https://blueroses-final.herokuapp.com/api/menuitems/get").then(
+      (response) => {
+        setMenuItemsList(response.data);
+      }
+    );
   }, []);
 
   const submitSuppliers = () => {
-    Axios.post(
-      "https://blueroses-deploy-heroku.herokuapp.com/api/suppliers/post",
-      {
-        supplierName: supplierName,
-        supplierPhoneNumber: supplierPhoneNumber,
-        quantity: quantity,
-      }
-    ).then(() => {
+    Axios.post("https://blueroses-final.herokuapp.com/api/suppliers/post", {
+      supplierName: supplierName,
+      supplierPhoneNumber: supplierPhoneNumber,
+      quantity: quantity,
+    }).then(() => {
       alert("Successfully added menu item");
     });
   };
 
   const deleteSupplier = (supplierId) => {
     Axios.delete(
-      `https://blueroses-deploy-heroku.herokuapp.com/api/suppliers/delete/${supplierId}`
+      `https://blueroses-final.herokuapp.com/api/suppliers/delete/${supplierId}`
     ).then((response) => {
       setSuppliersList(
         suppliersList.filter((val) => {

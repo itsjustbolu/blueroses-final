@@ -15,7 +15,7 @@ export function Employees() {
 
   useEffect(() => {
     Axios.get(
-      "https://blueroses-deploy-heroku.herokuapp.com/api/employees/get"
+      "https://blueroses-final.herokuapp.com/api/employees/get"
     ).then((response) => {
       setEmployeeList(response.data);
     });
@@ -23,7 +23,7 @@ export function Employees() {
 
   const submitEmployee = () => {
     Axios.post(
-      "https://blueroses-deploy-heroku.herokuapp.com/api/employees/post",
+      "https://blueroses-final.herokuapp.com/api/employees/post",
       {
         employeeFirstName: employeeFirstName,
         employeeLastName: employeeLastName,
@@ -39,7 +39,7 @@ export function Employees() {
 
   const deleteEmployee = (employeeId) => {
     Axios.delete(
-      `https://blueroses-deploy-heroku.herokuapp.com/api/employees/delete/${employeeId}`
+      `https://blueroses-final.herokuapp.com//api/employees/delete/${employeeId}`
     ).then((response) => {
       setEmployeeList(
         employeeList.filter((val) => {

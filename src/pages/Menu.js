@@ -12,7 +12,7 @@ function Menu() {
 
   useEffect(() => {
     Axios.get(
-      "https://blueroses-deploy-heroku.herokuapp.com/api/menuitems/get"
+      "https://blueroses-final.herokuapp.com/api/menuitems/get"
     ).then((response) => {
       setMenuItemsList(response.data);
     });
@@ -20,7 +20,7 @@ function Menu() {
 
   const submitMenuItems = () => {
     Axios.post(
-      "https://blueroses-deploy-heroku.herokuapp.com/api/menuitems/post",
+      "https://blueroses-final.herokuapp.com/api/menuitems/post",
       {
         itemName: itemName,
         itemPrice: itemPrice,
@@ -33,7 +33,7 @@ function Menu() {
 
   const deleteMenuItem = (itemId) => {
     Axios.delete(
-      `https://blueroses-deploy-heroku.herokuapp.com/api/menuitems/delete/${itemId}`
+      `https://blueroses-final.herokuapp.com/api/menuitems/delete/${itemId}`
     ).then((response) => {
       setMenuItemsList(
         menuItemsList.filter((val) => {

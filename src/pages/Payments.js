@@ -12,30 +12,27 @@ export function Payments() {
   const [paymentsList, setPaymentsList] = useState([]);
 
   useEffect(() => {
-    Axios.get(
-      "https://blueroses-deploy-heroku.herokuapp.com/api/payments/get"
-    ).then((response) => {
-      setPaymentsList(response.data);
-    });
+    Axios.get("https://blueroses-final.herokuapp.com/api/payments/get").then(
+      (response) => {
+        setPaymentsList(response.data);
+      }
+    );
   }, []);
 
   const submitPayment = () => {
-    Axios.post(
-      "https://blueroses-deploy-heroku.herokuapp.com/api/customers/post",
-      {
-        cardNumber: cardNumber,
-        expMonth: expMonth,
-        expYear: expYear,
-        securityCode: securityCode,
-      }
-    ).then(() => {
+    Axios.post("https://blueroses-final.herokuapp.com/api/customers/post", {
+      cardNumber: cardNumber,
+      expMonth: expMonth,
+      expYear: expYear,
+      securityCode: securityCode,
+    }).then(() => {
       alert("Successfully added payment");
     });
   };
 
   const deletePayment = (paymentId) => {
     Axios.delete(
-      `https://blueroses-deploy-heroku.herokuapp.com/api/payments/delete/${paymentId}`
+      `https://blueroses-final.herokuapp.com/api/payments/delete/${paymentId}`
     ).then((response) => {
       setPaymentsList(
         paymentsList.filter((val) => {
