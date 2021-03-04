@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/blueroses-final/static/css/main.8c8b27cf.chunk.css",
-    "main.js": "/blueroses-final/static/js/main.2855cf29.chunk.js",
-    "main.js.map": "/blueroses-final/static/js/main.2855cf29.chunk.js.map",
+    "main.js": "/blueroses-final/static/js/main.a63b6736.chunk.js",
+    "main.js.map": "/blueroses-final/static/js/main.a63b6736.chunk.js.map",
     "runtime-main.js": "/blueroses-final/static/js/runtime-main.43f34da8.js",
     "runtime-main.js.map": "/blueroses-final/static/js/runtime-main.43f34da8.js.map",
     "static/js/2.0fed4208.chunk.js": "/blueroses-final/static/js/2.0fed4208.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.43f34da8.js",
     "static/js/2.0fed4208.chunk.js",
     "static/css/main.8c8b27cf.chunk.css",
-    "static/js/main.2855cf29.chunk.js"
+    "static/js/main.a63b6736.chunk.js"
   ]
 }
