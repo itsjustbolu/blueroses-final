@@ -15,16 +15,25 @@ import Payments from "./pages/Payments";
 // import PlaceOrder from "./pages/PlaceOrder";
 import Suppliers from "./pages/Suppliers";
 import Status from "./pages/Status";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 
 function App() {
   return (
     <HashRouter basename="/">
       <Topbar />
-
-      <Link to="/">Home</Link>
-      <Link to="/customers">Customers</Link>
-      <Link to="/employees">Employees</Link>
-      <Link to="/menu">Menu</Link>
+      <Navbar bg="primary" expand="lg">
+        <Navbar.Brand href="/">BLUEROSES</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ml-auto">
+            <Link to="/">Home</Link>
+            <Link to="/customers">Customers</Link>
+            <Link to="/employees">Employees</Link>
+            <Link to="/menu">Menu</Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
 
       <Route path="/" component={Home} exact />
       <Route path="/customers" component={Customers} exact />
