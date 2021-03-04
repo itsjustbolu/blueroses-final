@@ -4,15 +4,11 @@ import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 
 export function PlaceOrder() {
-  const [customer, setCustomer] = useState("");
-  const [itemOne, setItemOne] = useState("");
-  const [itemOneQuantity, setItemOneQuantity] = useState("");
-  const [itemTwo, setItemTwo] = useState("");
-  const [itemTwoQuantity, setItemTwoQuantity] = useState("");
-  const [itemThree, setItemThree] = useState("");
-  const [itemThreeQuantity, setItemThreeQuantity] = useState("");
+  const [customerId, setCustomerId] = useState("");
+  const [itemId, setItemId] = useState("");
+  const [quantity, setQuantity] = useState("");
   const [orderDateTime, setOrderDateTime] = useState("");
-  const [payment, setPayment] = useState("");
+  const [paymentId, setPaymentId] = useState("");
   const [status, setStatus] = useState("");
   const [employee, setEmployee] = useState("");
 
@@ -20,6 +16,7 @@ export function PlaceOrder() {
   const [menuItemList, setMenuItemsList] = useState([]);
   const [statusList, setStatusList] = useState([]);
   const [employeeList, setEmployeeList] = useState([]);
+  const [customerPaymentList, setCustomerPaymentList] = useState([]);
   const [paymentList, setPaymentList] = useState([]);
 
   const [ordersList, setOrdersList] = useState([]);
@@ -64,17 +61,21 @@ export function PlaceOrder() {
     );
   }, []);
 
+  useEffect(() => {
+    Axios.get(
+      "https://blueroses-final.herokuapp.com/api/payments-customer/get"
+    ).then((response) => {
+      setCustomerPaymentList(response.data);
+    });
+  });
+
   const submitOrder = () => {
     Axios.post("", {
-      customer: customer,
-      itemOne: itemOne,
-      itemOneQuantity: itemOneQuantity,
-      itemTwo: itemTwo,
-      itemTwoQuantity: itemTwoQuantity,
-      itemThree: itemThree,
-      itemThreeQuantity: itemThreeQuantity,
+      customerId: customerId,
+      itemId: itemId,
+      quantity: quantity,
       orderDateTime: orderDateTime,
-      payment: payment,
+      paymentId: paymentId,
       status: status,
       employee: employee,
     }).then(() => {
@@ -90,13 +91,15 @@ export function PlaceOrder() {
         <p></p>
         <form>
           <div className="mb-3">
-            <label className="form-label">Select a customer</label>
+            <label style={{ paddingRight: "1em" }} className="form-label">
+              Select a customer:
+            </label>
 
             <select
               class="form-select"
               aria-label="Default select example"
-              name="customer"
-              onChange={(e) => setCustomer(e.target.value)}
+              name="customerId"
+              onChange={(e) => setCustomerId(e.target.value)}
             >
               {customerList.map((val) => {
                 return (
@@ -106,21 +109,18 @@ export function PlaceOrder() {
                 );
               })}
             </select>
-            {/* <div>
-            {customerList.map((val) => {
-                return <div>{val.firstName} {val.lastName}</div>
-              })}
-            </div> */}
           </div>
 
           <div className="mb-3">
-            <label className="form-label">First Item</label>
+            <label style={{ paddingRight: "1em" }} className="form-label">
+              Menu Item:
+            </label>
 
             <select
               class="form-select"
               aria-label="Default select example"
-              name="itemOne"
-              onChange={(e) => setItemOne(e.target.value)}
+              name="itemId"
+              onChange={(e) => setItemId(e.target.value)}
             >
               {menuItemList.map((val) => {
                 return <option value={val.itemId}>{val.itemName}</option>;
@@ -133,52 +133,8 @@ export function PlaceOrder() {
             <input
               type="number"
               className="form-control"
-              name="itemOneQuantity"
-              onChange={(e) => setItemOneQuantity(e.target.value)}
-            />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">2nd Item</label>
-            <select
-              class="form-select"
-              aria-label="Default select example"
-              name="itemTwo"
-              onChange={(e) => setItemTwo(e.target.value)}
-            >
-              {menuItemList.map((val) => {
-                return <option value={val.itemId}>{val.itemName}</option>;
-              })}
-            </select>
-          </div>
-          <div className="mb-3">
-            <label className="form-label">2nd Item Qty</label>
-            <input
-              type="number"
-              className="form-control"
-              name="itemTwoQuantity"
-              onChange={(e) => setItemTwoQuantity(e.target.value)}
-            />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">3rd Item</label>
-            <select
-              class="form-select"
-              aria-label="Default select example"
-              name="itemThree"
-              onChange={(e) => setItemThree(e.target.value)}
-            >
-              {menuItemList.map((val) => {
-                return <option value={val.itemId}>{val.itemName}</option>;
-              })}
-            </select>
-          </div>
-          <div className="mb-3">
-            <label className="form-label">3rd Item Qty</label>
-            <input
-              type="number"
-              className="form-control"
-              name="itemThreeQuantity"
-              onChange={(e) => setItemThreeQuantity(e.target.value)}
+              name="quantity"
+              onChange={(e) => setQuantity(e.target.value)}
             />
           </div>
 
@@ -193,17 +149,26 @@ export function PlaceOrder() {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Payments</label>
-            <input
-              type="number"
-              className="form-control"
-              name="orderDateTime"
-              onChange={(e) => setOrderDateTime(e.target.value)}
-            />
+            <label style={{ paddingRight: "1em" }} className="form-label">
+              Payments:{" "}
+            </label>
+
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              name="paymentId"
+              onChange={(e) => setPaymentId(e.target.value)}
+            >
+              {customerPaymentList.map((val) => {
+                return <option value={val.paymentId}>{val.cardNumber}</option>;
+              })}
+            </select>
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Status</label>
+            <label style={{ paddingRight: "1em" }} className="form-label">
+              Status:{" "}
+            </label>
             <select
               class="form-select"
               aria-label="Default select example"
@@ -217,7 +182,9 @@ export function PlaceOrder() {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Employee</label>
+            <label style={{ paddingRight: "1em" }} className="form-label">
+              Employee:{" "}
+            </label>
             <select
               class="form-select"
               aria-label="Default select example"
@@ -251,12 +218,9 @@ export function PlaceOrder() {
             <thead>
               <tr>
                 <th>Customer</th>
-                <th>itemOne</th>
-                <th>itemOneQuantity</th>
-                <th>itemTwo</th>
-                <th>itemTwoQuantity</th>
-                <th>itemThree</th>
-                <th>itemThreeQuantity</th>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Order Date + Time</th>
                 <th>Payment</th>
                 <th>Status</th>
                 <th>Employee</th>
@@ -267,16 +231,13 @@ export function PlaceOrder() {
               return (
                 <tbody>
                   <tr>
-                    <td>{val.customer}</td>
-                    <td>{val.itemOne}</td>
-                    <td>{val.itemOneQuantity}</td>
-                    <td>{val.itemTwo}</td>
-                    <td>{val.itemTwoQuantity}</td>
-                    <td>{val.itemThree}</td>
-                    <td>{val.itemThreeQuantity}</td>
-                    <td>{val.payment}</td>
-                    <td>{val.status}</td>
-                    <td>{val.employee}</td>
+                    <td>{val.customerId}</td>
+                    <td>{val.itemId}</td>
+                    <td>{val.quantity}</td>
+                    <td>{val.orderDateTime}</td>
+                    <td>{val.paymentId}</td>
+                    <td>{val.statusId}</td>
+                    <td>{val.employeeId}</td>
 
                     <td>
                       {/* <input
