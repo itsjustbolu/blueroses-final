@@ -22,11 +22,11 @@ function App() {
   return (
     <HashRouter basename="/">
       <Navbar bg="primary" expand="lg">
-        <Navbar.Brand href="/">BLUEROSES</Navbar.Brand>
+        <Navbar.Brand>BLUEROSES</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <Link to="/">Home</Link>
+            <Nav.Link to="/">Home</Nav.Link>
             <Nav.Link to="/customers">Customers</Nav.Link>
             <Link to="/employees">Employees</Link>
             <Link to="/menu">Menu</Link>
