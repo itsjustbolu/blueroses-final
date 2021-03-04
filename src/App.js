@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import {
+  Redirect,
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import Topbar from "./components/Topbar";
+import Home from "./pages/Home";
+import Customers from "./pages/Customers";
+import Employees from "./pages/Employees";
+import Menu from "./pages/Menu";
+import Payments from "./pages/Payments";
+// import PlaceOrder from "./pages/PlaceOrder";
+import Suppliers from "./pages/Suppliers";
+import Status from "./pages/Status";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Topbar />
+      <Switch>
+        <Route path="/" component={Home} exact />
+        <Route path="/customers" component={Customers} exact />
+        <Route path="/employees" component={Employees} exact />
+        <Route path="/menu" component={Menu} exact />
+        <Route path="/payments" component={Payments} exact />
+        {/* <Route path="/place-order" component={PlaceOrder} exact /> */}
+        <Route path="/suppliers" component={Suppliers} exact />
+        <Route path="/status" component={Status} exact />
+      </Switch>
+    </Router>
   );
 }
 
