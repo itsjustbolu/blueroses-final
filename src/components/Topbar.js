@@ -15,7 +15,7 @@ export class Topbar extends Component {
               <Link to="/">Home</Link>
               <Link to="/menu">Menu</Link>
               <Link to="/place-order">Place Order</Link>
-              <Link to="/customers">Customers</Link>
+              <Nav.Link to="/customers">Customers</Nav.Link>
               <Link to="/payments">Payments</Link>
               <Link to="/suppliers">Suppliers</Link>
               <Link to="/employees">Employees</Link>
