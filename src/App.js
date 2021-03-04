@@ -1,6 +1,6 @@
 import "./App.css";
 import {
-  Redirect,
+  HashRouter,
   BrowserRouter as Router,
   Switch,
   Route,
@@ -17,7 +17,7 @@ import Status from "./pages/Status";
 
 function App() {
   return (
-    <Router>
+    <HashRouter basename={process.env.PUBLIC_URL}>
       <Topbar />
       <Switch>
         <Route path="/" component={Home} exact />
@@ -29,7 +29,7 @@ function App() {
         <Route path="/suppliers" component={Suppliers} exact />
         <Route path="/status" component={Status} exact />
       </Switch>
-    </Router>
+    </HashRouter>
   );
 }
 
