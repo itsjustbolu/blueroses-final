@@ -4,6 +4,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Link,
 } from "react-router-dom";
 import Topbar from "./components/Topbar";
 import Home from "./pages/Home";
@@ -19,16 +20,20 @@ function App() {
   return (
     <HashRouter basename={process.env.PUBLIC_URL}>
       <Topbar />
-      <Switch>
-        <Route path="/" component={Home} exact />
-        <Route path="/customers" component={Customers} exact />
-        <Route path="/employees" component={Employees} exact />
-        <Route path="/menu" component={Menu} exact />
-        <Route path="/payments" component={Payments} exact />
-        {/* <Route path="/place-order" component={PlaceOrder} exact /> */}
-        <Route path="/suppliers" component={Suppliers} exact />
-        <Route path="/status" component={Status} exact />
-      </Switch>
+
+      <Link to="/">Home</Link>
+      <Link to="/customers">Customers</Link>
+      <Link to="/employees">Employees</Link>
+      <Link to="/menu">Menu</Link>
+
+      <Route path="/" component={Home} exact />
+      <Route path="/customers" component={Customers} exact />
+      <Route path="/employees" component={Employees} exact />
+      <Route path="/menu" component={Menu} exact />
+      <Route path="/payments" component={Payments} exact />
+      {/* <Route path="/place-order" component={PlaceOrder} exact /> */}
+      <Route path="/suppliers" component={Suppliers} exact />
+      <Route path="/status" component={Status} exact />
     </HashRouter>
   );
 }
