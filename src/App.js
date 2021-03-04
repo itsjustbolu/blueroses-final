@@ -18,7 +18,7 @@ import Status from "./pages/Status";
 
 function App() {
   return (
-    <HashRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter basename="/">
       <Topbar />
 
       <Link to="/">Home</Link>
