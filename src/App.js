@@ -21,19 +21,15 @@ import Nav from "react-bootstrap/Nav";
 function App() {
   return (
     <HashRouter basename="/">
-      <Navbar expand="lg">
+      <Navbar bg="primary" expand="lg">
         <Navbar.Brand href="/">BLUEROSES</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <Nav.Link to="/">Home</Nav.Link>
+            <Link to="/">Home</Link>
+            <Nav.Link to="/customers">Customers</Nav.Link>
+            <Link to="/employees">Employees</Link>
             <Link to="/menu">Menu</Link>
-            <Nav.Link to="/place-order">Place Order</Nav.Link>
-            <Link to="/customers">Customers</Link>
-            <Nav.Link to="/payments">Payments</Nav.Link>
-            <Nav.Link to="/suppliers">Suppliers</Nav.Link>
-            <Nav.Link to="/employees">Employees</Nav.Link>
-            <Nav.Link to="/status">Status</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
