@@ -129,7 +129,7 @@ export function PlaceOrder() {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">First Item Qty</label>
+            <label className="form-label">Quantity</label>
             <input
               type="number"
               className="form-control"
