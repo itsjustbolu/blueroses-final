@@ -22,7 +22,7 @@ function App() {
   return (
     <HashRouter basename="/">
       <Topbar />
-      <Navbar bg="primary" expand="lg">
+      {/* <Navbar bg="primary" expand="lg">
         <Navbar.Brand href="/">BLUEROSES</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -33,7 +33,7 @@ function App() {
             <Link to="/menu">Menu</Link>
           </Nav>
         </Navbar.Collapse>
-      </Navbar>
+      </Navbar> */}
 
       <Route path="/" component={Home} exact />
       <Route path="/customers" component={Customers} exact />

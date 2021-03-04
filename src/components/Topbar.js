@@ -12,14 +12,14 @@ export class Topbar extends Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
-              <Link to="/">Home</Link>
-              <Link to="/menu">Menu</Link>
-              <Link to="/place-order">Place Order</Link>
+              <Nav.Link to="/">Home</Nav.Link>
+              <Nav.Link to="/menu">Menu</Nav.Link>
+              <Nav.Link to="/place-order">Place Order</Nav.Link>
               <Nav.Link to="/customers">Customers</Nav.Link>
-              <Link to="/payments">Payments</Link>
-              <Link to="/suppliers">Suppliers</Link>
-              <Link to="/employees">Employees</Link>
-              <Link to="/status">Status</Link>
+              <Nav.Link to="/payments">Payments</Nav.Link>
+              <Nav.Link to="/suppliers">Suppliers</Nav.Link>
+              <Nav.Link to="/employees">Employees</Nav.Link>
+              <Nav.Link to="/status">Status</Nav.Link>
 
               {/* <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/menu">Menu</Nav.Link>
