@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/blueroses-final/static/css/main.8c8b27cf.chunk.css",
-    "main.js": "/blueroses-final/static/js/main.37389d5e.chunk.js",
-    "main.js.map": "/blueroses-final/static/js/main.37389d5e.chunk.js.map",
+    "main.js": "/blueroses-final/static/js/main.0c138a53.chunk.js",
+    "main.js.map": "/blueroses-final/static/js/main.0c138a53.chunk.js.map",
     "runtime-main.js": "/blueroses-final/static/js/runtime-main.43f34da8.js",
     "runtime-main.js.map": "/blueroses-final/static/js/runtime-main.43f34da8.js.map",
-    "static/js/2.f568fd28.chunk.js": "/blueroses-final/static/js/2.f568fd28.chunk.js",
-    "static/js/2.f568fd28.chunk.js.map": "/blueroses-final/static/js/2.f568fd28.chunk.js.map",
+    "static/js/2.3f139fdd.chunk.js": "/blueroses-final/static/js/2.3f139fdd.chunk.js",
+    "static/js/2.3f139fdd.chunk.js.map": "/blueroses-final/static/js/2.3f139fdd.chunk.js.map",
     "index.html": "/blueroses-final/index.html",
     "static/css/main.8c8b27cf.chunk.css.map": "/blueroses-final/static/css/main.8c8b27cf.chunk.css.map",
-    "static/js/2.f568fd28.chunk.js.LICENSE.txt": "/blueroses-final/static/js/2.f568fd28.chunk.js.LICENSE.txt"
+    "static/js/2.3f139fdd.chunk.js.LICENSE.txt": "/blueroses-final/static/js/2.3f139fdd.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.43f34da8.js",
-    "static/js/2.f568fd28.chunk.js",
+    "static/js/2.3f139fdd.chunk.js",
     "static/css/main.8c8b27cf.chunk.css",
-    "static/js/main.37389d5e.chunk.js"
+    "static/js/main.0c138a53.chunk.js"
   ]
 }
