@@ -235,7 +235,7 @@ export function Employees() {
                         variant="warning"
                         style={{ margin: "5px" }}
                         onClick={() => {
-                          updateEmployee(val.itemId);
+                          updateEmployee(val.employeeId);
                         }}
                       >
                         Update
