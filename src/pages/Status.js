@@ -32,7 +32,7 @@ function Status() {
     }).then((response) => {
       setStatusList(
         statusList.map((val) => {
-          return val.statusId == statusId
+          return val.statusId === statusId
             ? {
                 statusId: val.statusId,
                 statusName: newStatusName,
