@@ -6,10 +6,17 @@ import Table from "react-bootstrap/Table";
 export function Employees() {
   const [employeeFirstName, setEmployeeFirstName] = useState("");
   const [employeeLastName, setEmployeeLastName] = useState("");
-  const [employeePhoneNumber, setEmployeePhoneNumber] = useState("");
+  const [employeePhoneNumber, setEmployeePhoneNumber] = useState(0);
   const [employeeEmailAddress, setEmployeeEmailAddress] = useState("");
   const [employeeTitle, setEmployeeTitle] = useState("");
   const [employeeStartDate, setEmployeeStartDate] = useState("");
+
+  const [newEmployeeFirstName, setNewEmployeeFirstName] = useState("");
+  const [newEmployeeLastName, setNewEmployeeLastName] = useState("");
+  const [newEmployeePhoneNumber, setNewEmployeePhoneNumber] = useState(0);
+  const [newEmployeeEmailAddress, setNewEmployeeEmailAddress] = useState("");
+  const [newEmployeeTitle, setNewEmployeeTitle] = useState("");
+  const [newEmployeeStartDate, setNewEmployeeStartDate] = useState("");
 
   const [employeeList, setEmployeeList] = useState([]);
 
@@ -31,6 +38,34 @@ export function Employees() {
       employeeStartDate: employeeStartDate,
     }).then(() => {
       alert("Successfully added employee");
+    });
+  };
+
+  const updateEmployee = (employeeId) => {
+    Axios.put("https://blueroses-final.herokuapp.com/api/employees/update", {
+      employeeFirstName: newEmployeeFirstName,
+      employeeLastName: newEmployeeLastName,
+      employeePhoneNumber: newEmployeePhoneNumber,
+      employeeEmailAddress: newEmployeeEmailAddress,
+      employeeTitle: newEmployeeTitle,
+      employeeStartDate: newEmployeeStartDate,
+      employeeId: employeeId,
+    }).then((response) => {
+      setEmployeeList(
+        employeeList.map((val) => {
+          return val.employeeId === employeeId
+            ? {
+                employeeId: val.employeeId,
+                employeeFirstName: newEmployeeFirstName,
+                employeeLastName: newEmployeeLastName,
+                employeePhoneNumber: newEmployeePhoneNumber,
+                employeeEmailAddress: newEmployeeEmailAddress,
+                employeeTitle: newEmployeeTitle,
+                employeeStartDate: newEmployeeStartDate,
+              }
+            : val;
+        })
+      );
     });
   };
 
@@ -151,7 +186,58 @@ export function Employees() {
                     <td>{val.employeeTitle}</td>
                     <td>{val.employeeStartDate}</td>
                     <td>
-                      <Button variant="warning" style={{ margin: "5px" }}>
+                      <div>
+                        {" "}
+                        <input
+                          type="text"
+                          placeholder="enter new first name"
+                          onChange={(event) => {
+                            setNewEmployeeFirstName(event.target.value);
+                          }}
+                        />{" "}
+                        <input
+                          type="text"
+                          placeholder="enter new last name"
+                          onChange={(event) => {
+                            setNewEmployeeLastName(event.target.value);
+                          }}
+                        />{" "}
+                        <input
+                          type="number"
+                          placeholder="enter new phone #"
+                          onChange={(event) => {
+                            setNewEmployeePhoneNumber(event.target.value);
+                          }}
+                        />{" "}
+                        <input
+                          type="text"
+                          placeholder="enter new email"
+                          onChange={(event) => {
+                            setNewEmployeeEmailAddress(event.target.value);
+                          }}
+                        />{" "}
+                        <input
+                          type="text"
+                          placeholder="enter new title"
+                          onChange={(event) => {
+                            setNewEmployeeTitle(event.target.value);
+                          }}
+                        />{" "}
+                        <input
+                          type="date"
+                          placeholder="enter new date"
+                          onChange={(event) => {
+                            setNewEmployeeStartDate(event.target.value);
+                          }}
+                        />
+                      </div>
+                      <Button
+                        variant="warning"
+                        style={{ margin: "5px" }}
+                        onClick={() => {
+                          updateEmployee(val.itemId);
+                        }}
+                      >
                         Update
                       </Button>{" "}
                       <Button
