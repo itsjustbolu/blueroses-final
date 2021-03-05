@@ -5,29 +5,52 @@ import Table from "react-bootstrap/Table";
 
 function Menu() {
   const [itemName, setItemName] = useState("");
-  const [itemPrice, setItemPrice] = useState("");
-  const [currentStock, setCurrentStock] = useState("");
+  const [itemPrice, setItemPrice] = useState(0);
+  const [currentStock, setCurrentStock] = useState(0);
+
+  const [newItemName, setNewItemName] = useState("");
+  const [newItemPrice, setNewItemPrice] = useState(0);
+  const [newCurrentStock, setNewCurrentStock] = useState(0);
 
   const [menuItemsList, setMenuItemsList] = useState([]);
 
   useEffect(() => {
-    Axios.get(
-      "https://blueroses-final.herokuapp.com/api/menuitems/get"
-    ).then((response) => {
-      setMenuItemsList(response.data);
-    });
+    Axios.get("https://blueroses-final.herokuapp.com/api/menuitems/get").then(
+      (response) => {
+        setMenuItemsList(response.data);
+      }
+    );
   }, []);
 
   const submitMenuItems = () => {
-    Axios.post(
-      "https://blueroses-final.herokuapp.com/api/menuitems/post",
-      {
-        itemName: itemName,
-        itemPrice: itemPrice,
-        currentStock: currentStock,
-      }
-    ).then(() => {
+    Axios.post("https://blueroses-final.herokuapp.com/api/menuitems/post", {
+      itemName: itemName,
+      itemPrice: itemPrice,
+      currentStock: currentStock,
+    }).then(() => {
       alert("Successfully added menu item");
+    });
+  };
+
+  const updateMenuItem = (itemId) => {
+    Axios.put("https://blueroses-final.herokuapp.com/api/menuitems/update", {
+      itemName: newItemName,
+      itemPrice: newItemPrice,
+      currentStock: newCurrentStock,
+      itemId: itemId,
+    }).then((response) => {
+      setMenuItemsList(
+        menuItemsList.map((val) => {
+          return val.itemId === itemId
+            ? {
+                itemId: val.itemId,
+                itemName: newItemName,
+                itemPrice: newItemPrice,
+                currentStock: newCurrentStock,
+              }
+            : val;
+        })
+      );
     });
   };
 
@@ -105,7 +128,37 @@ function Menu() {
                   <td>{val.itemPrice}</td>
                   <td>{val.currentStock}</td>
                   <td>
-                    <Button variant="warning" style={{ margin: "5px" }}>
+                    <div>
+                      {" "}
+                      <input
+                        type="text"
+                        placeholder="enter new name"
+                        onChange={(event) => {
+                          setNewItemName(event.target.value);
+                        }}
+                      />
+                      <input
+                        type="number"
+                        placeholder="enter new price"
+                        onChange={(event) => {
+                          setNewItemPrice(event.target.value);
+                        }}
+                      />
+                      <input
+                        type="number"
+                        placeholder="enter new stock"
+                        onChange={(event) => {
+                          setNewCurrentStock(event.target.value);
+                        }}
+                      />
+                    </div>
+                    <Button
+                      variant="warning"
+                      style={{ margin: "5px" }}
+                      onClick={() => {
+                        updateMenuItem(val.itemId);
+                      }}
+                    >
                       Update
                     </Button>{" "}
                     <Button

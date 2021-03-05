@@ -54,6 +54,7 @@ function Suppliers() {
           return val.supplierId === supplierId
             ? {
                 supplierId: val.statusId,
+                itemId: val.itemId,
                 supplierName: newSupplierName,
                 supplierPhoneNumber: newSupplierPhoneNumber,
                 quantity: newQuantity,
