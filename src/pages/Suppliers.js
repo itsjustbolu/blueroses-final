@@ -9,6 +9,10 @@ function Suppliers() {
   const [quantity, setQuantity] = useState("");
   const [menuItem, setMenuItem] = useState("");
 
+  const [newSupplierName, setNewSupplierName] = useState("");
+  const [newSupplierPhoneNumber, setNewSupplierPhoneNumber] = useState(0);
+  const [newQuantity, setNewQuantity] = useState(0);
+
   const [menuItemsList, setMenuItemsList] = useState([]);
   const [suppliersList, setSuppliersList] = useState([]);
 
@@ -35,6 +39,28 @@ function Suppliers() {
       quantity: quantity,
     }).then(() => {
       alert("Successfully added menu item");
+    });
+  };
+
+  const updateSupplier = (supplierId) => {
+    Axios.put("https://blueroses-final.herokuapp.com/api/suppliers/update", {
+      supplierName: newSupplierName,
+      supplierPhoneNumber: newSupplierPhoneNumber,
+      quantity: newQuantity,
+      supplierId: supplierId,
+    }).then((response) => {
+      setSuppliersList(
+        suppliersList.map((val) => {
+          return val.supplierId === supplierId
+            ? {
+                supplierId: val.statusId,
+                supplierName: newSupplierName,
+                supplierPhoneNumber: newSupplierPhoneNumber,
+                quantity: newQuantity,
+              }
+            : val;
+        })
+      );
     });
   };
 
@@ -78,12 +104,14 @@ function Suppliers() {
         </div>
 
         <div className="mb-3">
-          <label className="form-label">Menu Item</label>
+          <label className="form-label" style={{ paddingRight: "1em" }}>
+            Menu Item:{" "}
+          </label>
 
           <select
             class="form-select"
             aria-label="Default select example"
-            name="menuItem"
+            name="itemId"
             onChange={(e) => setMenuItem(e.target.value)}
           >
             {menuItemsList.map((val) => {
@@ -128,12 +156,41 @@ function Suppliers() {
                   <tr>
                     <td>{val.supplierName}</td>
                     <td>{val.supplierPhoneNumber}</td>
-                    <td>{val.menuItem}</td>
+                    <td>{val.itemId}</td>
                     <td>{val.quantity}</td>
                     <td>
-                      <Button variant="warning" style={{ margin: "5px" }}>
-                        Update
-                      </Button>{" "}
+                      <div>
+                        <input
+                          type="text"
+                          placeholder="enter new status"
+                          onChange={(event) => {
+                            setNewSupplierName(event.target.value);
+                          }}
+                        />
+                        <input
+                          type="text"
+                          placeholder="enter new number"
+                          onChange={(event) => {
+                            setNewSupplierPhoneNumber(event.target.value);
+                          }}
+                        />
+                        <input
+                          type="text"
+                          placeholder="enter new qty"
+                          onChange={(event) => {
+                            setNewQuantity(event.target.value);
+                          }}
+                        />
+                        <Button
+                          variant="warning"
+                          style={{ margin: "5px" }}
+                          onClick={() => {
+                            updateSupplier(val.supplierId);
+                          }}
+                        >
+                          Update
+                        </Button>
+                      </div>{" "}
                       <Button
                         variant="danger"
                         style={{ margin: "5px" }}

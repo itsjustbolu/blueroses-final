@@ -28,7 +28,7 @@ function Status() {
   const updateStatus = (statusId) => {
     Axios.put("https://blueroses-final.herokuapp.com/api/status/update", {
       statusName: newStatusName,
-      statusId: statusId,
+      statusId: statusId
     }).then((response) => {
       setStatusList(
         statusList.map((val) => {
