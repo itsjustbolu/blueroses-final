@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 const CardContainer = styled.div`
   display: flex;
@@ -26,7 +27,10 @@ export class Home extends Component {
                 <Card.Body>
                   <Card.Title>Place a new order </Card.Title>
                   <Card.Text>Enter a new order for customer</Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
+
+                  <Link to="/place-order">
+                    <Button variant="primary">PLACE ORDER</Button>
+                  </Link>
                 </Card.Body>
               </Card>
 
@@ -37,7 +41,9 @@ export class Home extends Component {
                   <Card.Text>
                     See all orders that's been placed at Blueroses
                   </Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
+                  <Link to="/place-order">
+                    <Button variant="primary">VIEW</Button>
+                  </Link>
                 </Card.Body>
               </Card>
 
@@ -48,7 +54,9 @@ export class Home extends Component {
                   <Card.Text>
                     See all items that can be ordered at the restaurant
                   </Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
+                  <Link to="/menu">
+                    <Button variant="primary">VIEW MENU</Button>
+                  </Link>
                 </Card.Body>
               </Card>
 
@@ -59,7 +67,9 @@ export class Home extends Component {
                   <Card.Text>
                     Add a new customer to the Blueroses Database
                   </Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
+                  <Link to="/customers">
+                    <Button variant="primary">ADD</Button>
+                  </Link>
                 </Card.Body>
               </Card>
 
@@ -68,7 +78,9 @@ export class Home extends Component {
                 <Card.Body>
                   <Card.Title>View All Customers </Card.Title>
                   <Card.Text>See all the customers of Blueroses</Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
+                  <Link to="/customers">
+                    <Button variant="primary">VIEW</Button>
+                  </Link>
                 </Card.Body>
               </Card>
 
@@ -77,7 +89,9 @@ export class Home extends Component {
                 <Card.Body>
                   <Card.Title>Add a new supplier</Card.Title>
                   <Card.Text>Enter a new supplier to BLuerose</Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
+                  <Link to="/suppliers">
+                    <Button variant="primary">ADD SUPPLIER</Button>
+                  </Link>
                 </Card.Body>
               </Card>
 
@@ -86,7 +100,9 @@ export class Home extends Component {
                 <Card.Body>
                   <Card.Title>View All Suppliers </Card.Title>
                   <Card.Text>See all suppliers of Blueroses</Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
+                  <Link to="/suppliers">
+                    <Button variant="primary">VIEW ALL</Button>
+                  </Link>
                 </Card.Body>
               </Card>
 
@@ -97,7 +113,9 @@ export class Home extends Component {
                   <Card.Text>
                     Enter a new Employees details into Blueroses
                   </Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
+                  <Link to="/employees">
+                    <Button variant="primary">ADD EMPLOYEE</Button>
+                  </Link>
                 </Card.Body>
               </Card>
 
@@ -106,7 +124,9 @@ export class Home extends Component {
                 <Card.Body>
                   <Card.Title>View All Employees </Card.Title>
                   <Card.Text>See everybody that works at Blueroses</Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
+                  <Link to="/employees">
+                    <Button variant="primary">EMPLOYEES</Button>
+                  </Link>
                 </Card.Body>
               </Card>
             </CardContainer>
