@@ -6,21 +6,21 @@ import Table from "react-bootstrap/Table";
 export function Customers() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState(0);
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zipCode, setZipCode] = useState(0);
-  const [phoneNumber, setPhoneNumber] = useState(0);
-  const [email, setEmail] = useState("");
 
   const [newFirstName, setNewFirstName] = useState("");
   const [newLastName, setNewLastName] = useState("");
+  const [newEmail, setNewEmail] = useState("");
+  const [newPhoneNumber, setNewPhoneNumber] = useState(0);
   const [newAddress, setNewAddress] = useState("");
   const [newCity, setNewCity] = useState("");
   const [newState, setNewState] = useState("");
   const [newZipCode, setNewZipCode] = useState(0);
-  const [newPhoneNumber, setNewPhoneNumber] = useState(0);
-  const [newEmail, setNewEmail] = useState("");
 
   const [customerList, setCustomerList] = useState([]);
 
@@ -51,12 +51,12 @@ export function Customers() {
     Axios.put("https://blueroses-final.herokuapp.com/api/customers/update", {
       firstName: newFirstName,
       lastName: newLastName,
+      email: newEmail,
+      phoneNumber: newPhoneNumber,
       address: newAddress,
       city: newCity,
       state: newState,
       zipCode: newZipCode,
-      phoneNumber: newPhoneNumber,
-      email: newEmail,
       customerId: customerId,
     }).then((response) => {
       setCustomerList(
@@ -66,12 +66,12 @@ export function Customers() {
                 customerId: val.customerId,
                 firstName: newFirstName,
                 lastName: newLastName,
+                email: newEmail,
+                phoneNumber: newPhoneNumber,
                 address: newAddress,
                 city: newCity,
                 state: newState,
                 zipCode: newZipCode,
-                phoneNumber: newPhoneNumber,
-                email: newEmail,
               }
             : val;
         })
@@ -219,51 +219,58 @@ export function Customers() {
                     <td>{val.phoneNumber}</td>
                     <td>{val.email}</td>
                     <td>
-                    
-                      <input
-                        type="text"
-                        placeholder="add new first name"
-                        onChange={(event) =>
-                          setNewFirstName(event.target.value)
-                        }
-                      />
-                      <input
-                        type="text"
-                        placeholder="add new last name"
-                        onChange={(event) => setNewLastName(event.target.value)}
-                      />
-                      <input
-                        type="text"
-                        placeholder="add new address"
-                        onChange={(event) => setNewAddress(event.target.value)}
-                      />
-                      <input
-                        type="text"
-                        placeholder="add new city"
-                        onChange={(event) => setNewCity(event.target.value)}
-                      />
-                      <input
-                        type="text"
-                        placeholder="add new state"
-                        onChange={(event) => setNewState(event.target.value)}
-                      />
-                      <input
-                        type="number"
-                        placeholder="add new zip"
-                        onChange={(event) => setNewZipCode(event.target.value)}
-                      />
-                      <input
-                        type="number"
-                        placeholder="add new phone number"
-                        onChange={(event) =>
-                          setNewPhoneNumber(event.target.value)
-                        }
-                      />
-                      <input
-                        type="text"
-                        placeholder="add new email"
-                        onChange={(event) => setNewEmail(event.target.value)}
-                      />
+                      <div>
+                        <input
+                          type="text"
+                          placeholder="add new first name"
+                          onChange={(event) =>
+                            setNewFirstName(event.target.value)
+                          }
+                        />
+                        <input
+                          type="text"
+                          placeholder="add new last name"
+                          onChange={(event) =>
+                            setNewLastName(event.target.value)
+                          }
+                        />
+                        <input
+                          type="text"
+                          placeholder="add new email"
+                          onChange={(event) => setNewEmail(event.target.value)}
+                        />
+                        <input
+                          type="number"
+                          placeholder="add new phone number"
+                          onChange={(event) =>
+                            setNewPhoneNumber(event.target.value)
+                          }
+                        />
+                        <input
+                          type="text"
+                          placeholder="add new address"
+                          onChange={(event) =>
+                            setNewAddress(event.target.value)
+                          }
+                        />
+                        <input
+                          type="text"
+                          placeholder="add new city"
+                          onChange={(event) => setNewCity(event.target.value)}
+                        />
+                        <input
+                          type="text"
+                          placeholder="add new state"
+                          onChange={(event) => setNewState(event.target.value)}
+                        />
+                        <input
+                          type="number"
+                          placeholder="add new zip"
+                          onChange={(event) =>
+                            setNewZipCode(event.target.value)
+                          }
+                        />
+                      </div>
                       <Button
                         variant="warning"
                         style={{ margin: "5px" }}
@@ -273,7 +280,6 @@ export function Customers() {
                       >
                         Update
                       </Button>{" "}
-                     
                       <Button
                         variant="danger"
                         style={{ margin: "5px" }}
