@@ -21,11 +21,6 @@ export function PlaceOrder() {
 
   const [ordersList, setOrdersList] = useState([]);
 
-
-
-
-
-
   useEffect(() => {
     Axios.get("https://blueroses-final.herokuapp.com/api/customers/get").then(
       (response) => {
@@ -83,9 +78,14 @@ export function PlaceOrder() {
       paymentId: paymentId,
       status: status,
       employee: employee,
-    }).then(() => {
-      alert("successfully placed order");
-    });
+    })
+      .then((result) => {
+        console.log(result);
+        alert("successfully placed order");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -164,9 +164,7 @@ export function PlaceOrder() {
               name="paymentId"
               onChange={(e) => setPaymentId(e.target.value)}
             >
-              
-                <option value="2">2</option>
-              
+              <option value="2">2</option>
             </select>
           </div>
 
