@@ -24,10 +24,6 @@ export function PlaceOrder() {
 
 
 
-  
-
-
-
 
 
   useEffect(() => {
@@ -36,7 +32,7 @@ export function PlaceOrder() {
         setCustomerList(response.data);
       }
     );
-  }, []);
+  }, [true]);
 
   useEffect(() => {
     Axios.get("https://blueroses-final.herokuapp.com/api/menuitems/get").then(
@@ -70,13 +66,13 @@ export function PlaceOrder() {
     );
   }, []);
 
-  useEffect(() => {
-    Axios.get(
-      "https://blueroses-final.herokuapp.com/api/payments-customer/get"
-    ).then((response) => {
-      setCustomerPaymentList(response.data);
-    });
-  });
+  // useEffect(() => {
+  //   Axios.get(
+  //     "https://blueroses-final.herokuapp.com/api/payments-customer/get"
+  //   ).then((response) => {
+  //     setCustomerPaymentList(response.data);
+  //   });
+  // }, []);
 
   const submitOrder = () => {
     Axios.post("", {
@@ -168,9 +164,9 @@ export function PlaceOrder() {
               name="paymentId"
               onChange={(e) => setPaymentId(e.target.value)}
             >
-              {customerPaymentList.map((val) => {
-                return <option value={val.paymentId}>{val.cardNumber}</option>;
-              })}
+              
+                <option value="2">2</option>
+              
             </select>
           </div>
 
