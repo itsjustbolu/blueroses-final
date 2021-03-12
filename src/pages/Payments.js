@@ -9,7 +9,18 @@ export function Payments() {
   const [expYear, setExpYear] = useState("");
   const [securityCode, setSecurityCode] = useState("");
 
+  const [customerId, setCustomerId] = useState("");
+  const [customerList, setCustomerList] = useState([])
+
   const [paymentsList, setPaymentsList] = useState([]);
+
+  useEffect(() => {
+    Axios.get("https://blueroses-final.herokuapp.com/api/customers/get").then(
+      (response) => {
+        setCustomerList(response.data);
+      }
+    );
+  }, []);
 
   useEffect(() => {
     Axios.get("https://blueroses-final.herokuapp.com/api/payments/get").then(
@@ -21,6 +32,7 @@ export function Payments() {
 
   const submitPayment = () => {
     Axios.post("https://blueroses-final.herokuapp.com/api/customers/post", {
+      customerId: customerId,
       cardNumber: cardNumber,
       expMonth: expMonth,
       expYear: expYear,
@@ -49,6 +61,29 @@ export function Payments() {
       <div>Add Payment Method</div>
       <p></p>
       <form>
+
+      <div className="mb-3">
+            <label style={{ paddingRight: "1em" }} className="form-label">
+              Select a customer:
+            </label>
+
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              name="customerId"
+              onChange={(e) => setCustomerId(e.target.value)}
+            >
+              {customerList.map((val) => {
+                return (
+                  <option value={val.customerId}>
+                    {val.firstName} {val.lastName}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+
+
         <div class="mb-3">
           <label class="form-label">Card Number</label>
           <input
