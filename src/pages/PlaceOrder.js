@@ -75,7 +75,7 @@ export function PlaceOrder() {
   // }, []);
 
   const submitOrder = () => {
-    Axios.post("", {
+    Axios.post("https://blueroses-final.herokuapp.com/api/orders/post", {
       customerId: customerId,
       itemId: itemId,
       quantity: quantity,
