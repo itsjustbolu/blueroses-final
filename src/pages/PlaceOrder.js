@@ -9,8 +9,8 @@ export function PlaceOrder() {
   const [quantity, setQuantity] = useState("");
   const [orderDateTime, setOrderDateTime] = useState("");
   const [paymentId, setPaymentId] = useState("");
-  const [status, setStatus] = useState("");
-  const [employee, setEmployee] = useState("");
+  const [statusId, setStatusId] = useState("");
+  const [employeeId, setEmployeeId] = useState("");
 
   const [customerList, setCustomerList] = useState([]);
   const [menuItemList, setMenuItemsList] = useState([]);
@@ -76,8 +76,8 @@ export function PlaceOrder() {
       quantity: quantity,
       orderDateTime: orderDateTime,
       paymentId: paymentId,
-      status: status,
-      employee: employee,
+      statusId: statusId,
+      employeeId: employeeId,
     })
       .then((result) => {
         console.log(result);
@@ -175,8 +175,8 @@ export function PlaceOrder() {
             <select
               class="form-select"
               aria-label="Default select example"
-              name="status"
-              onChange={(e) => setStatus(e.target.value)}
+              name="statusId"
+              onChange={(e) => setStatusId(e.target.value)}
             >
               {statusList.map((val) => {
                 return <option value={val.statusId}>{val.statusName}</option>;
@@ -191,8 +191,8 @@ export function PlaceOrder() {
             <select
               class="form-select"
               aria-label="Default select example"
-              name="employee"
-              onChange={(e) => setEmployee(e.target.value)}
+              name="employeeId"
+              onChange={(e) => setEmployeeId(e.target.value)}
             >
               {employeeList.map((val) => {
                 return (
