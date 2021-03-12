@@ -25,9 +25,10 @@ export function PlaceOrder() {
     Axios.get("https://blueroses-final.herokuapp.com/api/customers/get").then(
       (response) => {
         setCustomerList(response.data);
+        setCustomerId(response.data[0].customerId);
       }
     );
-  }, [true]);
+  }, []);
 
   useEffect(() => {
     Axios.get("https://blueroses-final.herokuapp.com/api/menuitems/get").then(
@@ -162,6 +163,7 @@ export function PlaceOrder() {
               class="form-select"
               aria-label="Default select example"
               name="paymentId"
+              default="2"
               onChange={(e) => setPaymentId(e.target.value)}
             >
               <option value="2">2</option>
