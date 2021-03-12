@@ -34,6 +34,7 @@ export function PlaceOrder() {
     Axios.get("https://blueroses-final.herokuapp.com/api/menuitems/get").then(
       (response) => {
         setMenuItemsList(response.data);
+        setItemId(response.data[0].customerId)
       }
     );
   }, []);
@@ -42,6 +43,7 @@ export function PlaceOrder() {
     Axios.get("https://blueroses-final.herokuapp.com/api/status/get").then(
       (response) => {
         setStatusList(response.data);
+        setStatusId(response.data[0].statusId)
       }
     );
   }, []);
@@ -50,6 +52,7 @@ export function PlaceOrder() {
     Axios.get("https://blueroses-final.herokuapp.com/api/employees/get").then(
       (response) => {
         setEmployeeList(response.data);
+        setEmployeeId(response.data[0].employeeId)
       }
     );
   }, []);
