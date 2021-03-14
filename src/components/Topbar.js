@@ -20,6 +20,7 @@ export class Topbar extends Component {
               <Nav.Link to="/suppliers">Suppliers</Nav.Link>
               <Nav.Link to="/employees">Employees</Nav.Link>
               <Nav.Link to="/status">Status</Nav.Link>
+              <Nav.Link to="/search">Search</Nav.Link>
 
               {/* <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/menu">Menu</Nav.Link>

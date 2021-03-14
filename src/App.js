@@ -17,6 +17,7 @@ import Suppliers from "./pages/Suppliers";
 import Status from "./pages/Status";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import Search from "./pages/Search";
 
 function App() {
   return (
@@ -65,6 +66,9 @@ function App() {
             <Link style={{ margin: "5px", paddingRight: "20px" }} to="/status">
               Status
             </Link>
+            <Link style={{ margin: "5px", paddingRight: "20px" }} to="/search">
+              Search
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -77,6 +81,7 @@ function App() {
       <Route path="/place-order" component={PlaceOrder} exact />
       <Route path="/suppliers" component={Suppliers} exact />
       <Route path="/status" component={Status} exact />
+      <Route path="/status" component={Search} exact />
     </HashRouter>
   );
 }

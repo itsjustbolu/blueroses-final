@@ -225,11 +225,12 @@ export function PlaceOrder() {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>Customer</th>
+                <th>Customer First Name</th>
+                <th>Customer Last Name</th>
                 <th>Item</th>
                 <th>Quantity</th>
                 <th>Order Date + Time</th>
-                <th>Payment</th>
+                <th>Payment Card</th>
                 <th>Status</th>
                 <th>Employee</th>
                 <th colspan="2">Action</th>
@@ -240,12 +241,13 @@ export function PlaceOrder() {
                 <tbody>
                   <tr>
                     <td>{val.firstName}</td>
-                    <td>{val.itemId}</td>
+                    <td>{val.lastName}</td>
+                    <td>{val.itemName}</td>
                     <td>{val.quantity}</td>
                     <td>{val.orderDateTime}</td>
-                    <td>{val.paymentId}</td>
-                    <td>{val.statusId}</td>
-                    <td>{val.employeeId}</td>
+                    <td>{val.cardNumber}</td>
+                    <td>{val.statusName}</td>
+                    <td>{val.employeeLastName}</td>
 
                     <td>
                       {/* <input

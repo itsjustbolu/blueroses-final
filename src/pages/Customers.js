@@ -188,6 +188,7 @@ export function Customers() {
           </button>
         </form>
         <br />
+
         <br />
         <h2>List of Customers</h2>
 
