@@ -87,26 +87,6 @@ function Suppliers() {
       <div>See List of Suppliers</div>
       <p></p>
       <form>
-        <div class="mb-3">
-          <label class="form-label">Supplier Name</label>
-          <input
-            type="text"
-            class="form-control"
-            name="supplierName"
-            onChange={(e) => setSupplierName(e.target.value)}
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Supplier Phone Number</label>
-          <input
-            type="number"
-            class="form-control"
-            name="supplierPhoneNumber"
-            onChange={(e) => setSupplierPhoneNumber(e.target.value)}
-          />
-        </div>
-
         <div className="mb-3">
           <label className="form-label" style={{ paddingRight: "1em" }}>
             Menu Item:{" "}
@@ -127,6 +107,26 @@ function Suppliers() {
               );
             })}
           </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Supplier Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="supplierName"
+            onChange={(e) => setSupplierName(e.target.value)}
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Supplier Phone Number</label>
+          <input
+            type="number"
+            class="form-control"
+            name="supplierPhoneNumber"
+            onChange={(e) => setSupplierPhoneNumber(e.target.value)}
+          />
         </div>
 
         <div class="mb-3">
