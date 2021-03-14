@@ -49,6 +49,7 @@ export function Payments() {
 
   const updatePayment = (paymentId) => {
     Axios.put("https://blueroses-final.herokuapp.com/api/payments/update", {
+      customerId: customerId,
       cardNumber: cardNumber,
       expMonth: expMonth,
       expYear: expYear,
@@ -60,6 +61,7 @@ export function Payments() {
           return val.paymentId === paymentId
             ? {
                 paymentId: val.paymentId,
+                customerId: val.customerId,
                 cardNumber: newCardNumber,
                 expMonth: newExpMonth,
                 expYear: newExpYear,
@@ -114,7 +116,7 @@ export function Payments() {
         <div class="mb-3">
           <label class="form-label">Card Number</label>
           <input
-            type="text"
+            type="number"
             class="form-control"
             name="cardNumber"
             onChange={(e) => setCardNumber(e.target.value)}
