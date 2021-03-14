@@ -81,7 +81,7 @@ function App() {
       <Route path="/place-order" component={PlaceOrder} exact />
       <Route path="/suppliers" component={Suppliers} exact />
       <Route path="/status" component={Status} exact />
-      <Route path="/status" component={Search} exact />
+      <Route path="/search" component={Search} exact />
     </HashRouter>
   );
 }
