@@ -123,7 +123,7 @@ function Suppliers() {
             onChange={(e) => setItemId(e.target.value)}
           >
             {menuItemsList.map((val) => {
-              return <option value={val.itemId}>{val.itemName}</option>;
+              return <option value={val.itemId}>{val.itemName} </option>;
             })}
           </select>
         </div>
