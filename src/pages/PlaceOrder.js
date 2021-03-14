@@ -104,7 +104,7 @@ export function PlaceOrder() {
               Select a customer:
             </label>
 
-            <select
+            <select 
               class="form-select"
               aria-label="Default select example"
               name="customerId"

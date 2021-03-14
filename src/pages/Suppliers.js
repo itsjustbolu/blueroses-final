@@ -40,10 +40,9 @@ function Suppliers() {
       supplierName: supplierName,
       supplierPhoneNumber: supplierPhoneNumber,
       quantity: quantity,
-    })
-      .then(() => {
-        alert("Successfully added menu item");
-      })
+    }).then(() => {
+      alert("Successfully added menu item");
+    });
   };
 
   const updateSupplier = (supplierId) => {
@@ -87,7 +86,7 @@ function Suppliers() {
 
       <div>See List of Suppliers</div>
       <p></p>
-      <form action="/" method="POST">
+      <form>
         <div class="mb-3">
           <label class="form-label">Supplier Name</label>
           <input
@@ -114,6 +113,7 @@ function Suppliers() {
           </label>
 
           <select
+            value="1"
             class="form-select"
             aria-label="Default select example"
             name="itemId"
