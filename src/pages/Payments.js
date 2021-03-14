@@ -4,12 +4,12 @@ import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 
 export function Payments() {
+  const [customerId, setCustomerId] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [expMonth, setExpMonth] = useState("");
   const [expYear, setExpYear] = useState("");
   const [securityCode, setSecurityCode] = useState("");
 
-  const [customerId, setCustomerId] = useState("");
   const [customerList, setCustomerList] = useState([])
 
   const [paymentsList, setPaymentsList] = useState([]);
@@ -125,7 +125,7 @@ export function Payments() {
         </div>
 
         <button onClick={submitPayment} type="submit" class="btn btn-primary">
-          Submit
+          ADD PAYMENT
         </button>
       </form>
 
@@ -136,7 +136,8 @@ export function Payments() {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>Customer</th>
+                <th>Customer First Name</th>
+                <th>Customer Last Name</th>
                 <th>Card Number</th>
                 <th>Exp Month</th>
                 <th>Exp Year</th>
@@ -148,7 +149,8 @@ export function Payments() {
               return (
                 <tbody>
                   <tr>
-                    <td>Customer</td>
+                    <td>{val.firstName}</td>
+                    <td>{val.lastName}</td>
                     <td>{val.cardNumber}</td>
                     <td>{val.expMonth}</td>
                     <td>{val.expYear}</td>

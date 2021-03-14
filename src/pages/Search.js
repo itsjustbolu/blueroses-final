@@ -15,6 +15,9 @@ function Search() {
   const [menuItemsList, setMenuItemsList] = useState([]);
   const [menuSearchTerm, setMenuSearchTerm] = useState("");
 
+  const [suppliersList, setSuppliersList] = useState([]);
+  const [suppliersSearchTerm, setSuppliersSearchTerm] = useState([]);
+
   useEffect(() => {
     Axios.get("https://blueroses-final.herokuapp.com/api/customers/get").then(
       (response) => {
@@ -35,6 +38,14 @@ function Search() {
     Axios.get("https://blueroses-final.herokuapp.com/api/menuitems/get").then(
       (response) => {
         setMenuItemsList(response.data);
+      }
+    );
+  }, []);
+
+  useEffect(() => {
+    Axios.get("https://blueroses-final.herokuapp.com/api/suppliers/get").then(
+      (response) => {
+        setSuppliersList(response.data);
       }
     );
   }, []);
@@ -247,33 +258,34 @@ function Search() {
           <Accordion.Collapse eventKey="1">
             <Card.Body>
               <div>
-                <h2>Menu Search</h2>
+                <h2>Supplier Search</h2>
                 <div>
                   <input
                     sie="50"
                     type="text"
-                    placeholder="Search by item name"
+                    placeholder="Search by supplier name"
                     onChange={(e) =>
-                      setMenuSearchTerm(e.target.value.toLocaleLowerCase())
+                      setSuppliersSearchTerm(e.target.value.toLocaleLowerCase())
                     }
                   />
                   <p></p>
                   <Table striped bordered hover>
                     <thead>
                       <tr>
-                        <th>Item</th>
-                        <th>Price</th>
-                        <th>Stock</th>
+                        <th>Supplier Name</th>
+                        <th>Phone Number</th>
+                        <th>Menu Item</th>
+                        <th>Quantity</th>
                       </tr>
                     </thead>
-                    {menuItemsList
+                    {suppliersList
                       .filter((val) => {
-                        if (menuSearchTerm === "") {
+                        if (suppliersSearchTerm === "") {
                           return val;
                         } else if (
                           val.itemName
                             .toLowerCase()
-                            .includes(menuSearchTerm.toLowerCase())
+                            .includes(suppliersSearchTerm.toLowerCase())
                         ) {
                           return val;
                         }
@@ -282,9 +294,10 @@ function Search() {
                         return (
                           <tbody>
                             <tr key={key}>
-                              <td>{val.itemName}</td>
-                              <td>{val.itemPrice}</td>
-                              <td>{val.currentStock}</td>
+                              <td>{val.supplierName}</td>
+                              <td>{val.supplierPhoneNumber}</td>
+                              <td>{val.itemId}</td>
+                              <td>{val.quantity}</td>
                             </tr>
                           </tbody>
                         );

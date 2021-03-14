@@ -79,7 +79,7 @@ export function PlaceOrder() {
       itemId: itemId,
       quantity: quantity,
       orderDateTime: orderDateTime,
-      paymentId: 2,
+      paymentId: paymentId,
       statusId: statusId,
       employeeId: employeeId,
     })
