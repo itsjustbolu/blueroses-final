@@ -90,7 +90,7 @@ function Suppliers() {
 
       <div>See List of Suppliers</div>
       <p></p>
-      <form>
+      <form action="/" method="POST">
         <div class="mb-3">
           <label class="form-label">Supplier Name</label>
           <input
@@ -123,7 +123,11 @@ function Suppliers() {
             onChange={(e) => setItemId(e.target.value)}
           >
             {menuItemsList.map((val) => {
-              return <option value={val.itemId}>{val.itemName} </option>;
+              return (
+                <option value={val.itemId}>
+                  {val.itemName} {val.itemId}
+                </option>
+              );
             })}
           </select>
         </div>
