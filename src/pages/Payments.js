@@ -14,6 +14,11 @@ export function Payments() {
 
   const [paymentsList, setPaymentsList] = useState([]);
 
+  const [newCardNumber, setNewCardNumber] = useState("");
+  const [newExpMonth, setNewExpMonth] = useState("");
+  const [newExpYear, setNewExpYear] = useState("");
+  const [newSecurityCode, setNewSecurityCode] = useState("");
+
   useEffect(() => {
     Axios.get("https://blueroses-final.herokuapp.com/api/customers/get").then(
       (response) => {
@@ -39,6 +44,30 @@ export function Payments() {
       securityCode: securityCode,
     }).then(() => {
       alert("Successfully added payment");
+    });
+  };
+
+  const updatePayment = (paymentId) => {
+    Axios.put("https://blueroses-final.herokuapp.com/api/payments/update", {
+      cardNumber: cardNumber,
+      expMonth: expMonth,
+      expYear: expYear,
+      securityCode: securityCode,
+      paymentId: paymentId,
+    }).then((response) => {
+      setPaymentsList(
+        paymentsList.map((val) => {
+          return val.paymentId === paymentId
+            ? {
+                paymentId: val.paymentId,
+                cardNumber: newCardNumber,
+                expMonth: newExpMonth,
+                expYear: newExpYear,
+                securityCode: newSecurityCode,
+              }
+            : val;
+        })
+      );
     });
   };
 
@@ -154,7 +183,43 @@ export function Payments() {
                     <td>{val.expYear}</td>
                     <td>{val.securityCode}</td>
                     <td>
-                      <Button variant="warning" style={{ margin: "5px" }}>
+                      <div>
+                        <input
+                          type="number"
+                          placeholder="add new card #"
+                          onChange={(event) =>
+                            setNewCardNumber(event.target.value)
+                          }
+                        />
+                        <input
+                          type="number"
+                          placeholder="add new exp month"
+                          onChange={(event) =>
+                            setNewExpMonth(event.target.value)
+                          }
+                        />
+                        <input
+                          type="number"
+                          placeholder="add new exp year"
+                          onChange={(event) =>
+                            setNewExpYear(event.target.value)
+                          }
+                        />
+                        <input
+                          type="number"
+                          placeholder="add new sec code"
+                          onChange={(event) =>
+                            setNewSecurityCode(event.target.value)
+                          }
+                        />
+                      </div>
+                      <Button
+                        variant="warning"
+                        style={{ margin: "5px" }}
+                        onClick={() => {
+                          updatePayment(val.paymentId);
+                        }}
+                      >
                         Update
                       </Button>{" "}
                       <Button
