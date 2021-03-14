@@ -7,6 +7,8 @@ function Suppliers() {
   const [supplierName, setSupplierName] = useState("");
   const [supplierPhoneNumber, setSupplierPhoneNumber] = useState("");
   const [quantity, setQuantity] = useState("");
+  const [itemId, setItemId] = useState("");
+
   const [menuItem, setMenuItem] = useState("");
 
   const [newSupplierName, setNewSupplierName] = useState("");
@@ -34,12 +36,17 @@ function Suppliers() {
 
   const submitSuppliers = () => {
     Axios.post("https://blueroses-final.herokuapp.com/api/suppliers/post", {
+      itemId: itemId,
       supplierName: supplierName,
       supplierPhoneNumber: supplierPhoneNumber,
       quantity: quantity,
-    }).then(() => {
-      alert("Successfully added menu item");
-    });
+    })
+      .then(() => {
+        alert("Successfully added menu item");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const updateSupplier = (supplierId) => {
@@ -113,7 +120,7 @@ function Suppliers() {
             class="form-select"
             aria-label="Default select example"
             name="itemId"
-            onChange={(e) => setMenuItem(e.target.value)}
+            onChange={(e) => setItemId(e.target.value)}
           >
             {menuItemsList.map((val) => {
               return <option value={val.itemId}>{val.itemName}</option>;
@@ -144,6 +151,7 @@ function Suppliers() {
           <Table striped bordered hover>
             <thead>
               <tr>
+                <th>Item Name</th>
                 <th>Supplier Name</th>
                 <th>Phone Number</th>
                 <th>Menu Item</th>
@@ -155,6 +163,7 @@ function Suppliers() {
               return (
                 <tbody>
                   <tr>
+                    <td>{val.itemName}</td>
                     <td>{val.supplierName}</td>
                     <td>{val.supplierPhoneNumber}</td>
                     <td>{val.itemId}</td>
