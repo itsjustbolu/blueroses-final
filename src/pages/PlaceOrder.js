@@ -239,7 +239,7 @@ export function PlaceOrder() {
               return (
                 <tbody>
                   <tr>
-                    <td>{val.customerId}</td>
+                    <td>{val.firstName}</td>
                     <td>{val.itemId}</td>
                     <td>{val.quantity}</td>
                     <td>{val.orderDateTime}</td>
