@@ -10,7 +10,7 @@ export function Payments() {
   const [expYear, setExpYear] = useState("");
   const [securityCode, setSecurityCode] = useState("");
 
-  const [customerList, setCustomerList] = useState([])
+  const [customerList, setCustomerList] = useState([]);
 
   const [paymentsList, setPaymentsList] = useState([]);
 
@@ -31,7 +31,7 @@ export function Payments() {
   }, []);
 
   const submitPayment = () => {
-    Axios.post("https://blueroses-final.herokuapp.com/api/customers/post", {
+    Axios.post("https://blueroses-final.herokuapp.com/api/payments/post", {
       customerId: customerId,
       cardNumber: cardNumber,
       expMonth: expMonth,
@@ -61,28 +61,26 @@ export function Payments() {
       <div>Add Payment Method</div>
       <p></p>
       <form>
+        <div className="mb-3">
+          <label style={{ paddingRight: "1em" }} className="form-label">
+            Select a customer:
+          </label>
 
-      <div className="mb-3">
-            <label style={{ paddingRight: "1em" }} className="form-label">
-              Select a customer:
-            </label>
-
-            <select
-              class="form-select"
-              aria-label="Default select example"
-              name="customerId"
-              onChange={(e) => setCustomerId(e.target.value)}
-            >
-              {customerList.map((val) => {
-                return (
-                  <option value={val.customerId}>
-                    {val.firstName} {val.lastName}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-
+          <select
+            className="form-select"
+            aria-label="Default select example"
+            name="customerId"
+            onChange={(e) => setCustomerId(e.target.value)}
+          >
+            {customerList.map((val) => {
+              return (
+                <option value={val.customerId}>
+                  {val.firstName} {val.lastName}
+                </option>
+              );
+            })}
+          </select>
+        </div>
 
         <div class="mb-3">
           <label class="form-label">Card Number</label>
@@ -142,7 +140,7 @@ export function Payments() {
                 <th>Exp Month</th>
                 <th>Exp Year</th>
                 <th>Security Code</th>
-                <th colspan="2">Action</th>
+                <th colSpan="2">Action</th>
               </tr>
             </thead>
             {paymentsList.map((val) => {
