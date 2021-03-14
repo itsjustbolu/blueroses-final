@@ -97,7 +97,8 @@ function Suppliers() {
             class="form-select"
             aria-label="Default select example"
             name="itemId"
-            onChange={(e) => setItemId(e.target.value)}
+            // onChange={(e) => setItemId(e.target.value)}
+            onChange={this.change}
           >
             {menuItemsList.map((val) => {
               return (
