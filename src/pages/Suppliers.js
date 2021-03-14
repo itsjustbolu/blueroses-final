@@ -44,9 +44,6 @@ function Suppliers() {
       .then(() => {
         alert("Successfully added menu item");
       })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   const updateSupplier = (supplierId) => {
