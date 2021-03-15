@@ -13,7 +13,7 @@ export function PlaceOrder() {
   const [employeeId, setEmployeeId] = useState("");
 
   const [customerList, setCustomerList] = useState([]);
-  const [menuItemList, setMenuItemsList] = useState([]);
+  const [menuItemsList, setMenuItemsList] = useState([]);
   const [statusList, setStatusList] = useState([]);
   const [employeeList, setEmployeeList] = useState([]);
   const [customerPaymentList, setCustomerPaymentList] = useState([]);
@@ -34,7 +34,7 @@ export function PlaceOrder() {
     Axios.get("https://blueroses-final.herokuapp.com/api/menuitems/get").then(
       (response) => {
         setMenuItemsList(response.data);
-        setItemId(response.data[0].customerId)
+        setItemId(response.data[0].customerId);
       }
     );
   }, []);
@@ -43,7 +43,7 @@ export function PlaceOrder() {
     Axios.get("https://blueroses-final.herokuapp.com/api/status/get").then(
       (response) => {
         setStatusList(response.data);
-        setStatusId(response.data[0].statusId)
+        setStatusId(response.data[0].statusId);
       }
     );
   }, []);
@@ -52,7 +52,7 @@ export function PlaceOrder() {
     Axios.get("https://blueroses-final.herokuapp.com/api/employees/get").then(
       (response) => {
         setEmployeeList(response.data);
-        setEmployeeId(response.data[0].employeeId)
+        setEmployeeId(response.data[0].employeeId);
       }
     );
   }, []);
@@ -65,15 +65,17 @@ export function PlaceOrder() {
     );
   }, []);
 
-  // useEffect(() => {
-  //   Axios.get(
-  //     "https://blueroses-final.herokuapp.com/api/payments-customer/get"
-  //   ).then((response) => {
-  //     setCustomerPaymentList(response.data);
-  //   });
-  // }, []);
+  useEffect(() => {
+    Axios.get(
+      "https://blueroses-final.herokuapp.com/api/payments-customer/get"
+    ).then((response) => {
+      setPaymentList(response.data);
+    });
+  }, []);
 
-  const submitOrder = () => {
+  const submitOrder = (event) => {
+    event.preventDefault();
+    console.log(itemId, paymentId, statusId, employeeId);
     Axios.post("https://blueroses-final.herokuapp.com/api/orders/post", {
       customerId: customerId,
       itemId: itemId,
@@ -82,14 +84,10 @@ export function PlaceOrder() {
       paymentId: paymentId,
       statusId: statusId,
       employeeId: employeeId,
-    })
-      .then((result) => {
-        console.log(result);
-        alert("successfully placed order");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }).then((result) => {
+      console.log(result);
+      alert("successfully placed order");
+    });
   };
 
   return (
@@ -104,7 +102,7 @@ export function PlaceOrder() {
               Select a customer:
             </label>
 
-            <select 
+            <select
               class="form-select"
               aria-label="Default select example"
               name="customerId"
@@ -131,8 +129,12 @@ export function PlaceOrder() {
               name="itemId"
               onChange={(e) => setItemId(e.target.value)}
             >
-              {menuItemList.map((val) => {
-                return <option value={val.itemId}>{val.itemName}</option>;
+              {menuItemsList.map((val, key) => {
+                return (
+                  <option value={val.itemId} key={key}>
+                    {val.itemName} {val.itemId}
+                  </option>
+                );
               })}
             </select>
           </div>
@@ -166,10 +168,11 @@ export function PlaceOrder() {
               class="form-select"
               aria-label="Default select example"
               name="paymentId"
-              default="2"
               onChange={(e) => setPaymentId(e.target.value)}
             >
-              <option value="2">2</option>
+              {paymentList.map((val) => {
+                return <option value={val.paymentId}>{val.cardNumber}</option>;
+              })}
             </select>
           </div>
 

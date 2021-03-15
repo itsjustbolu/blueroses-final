@@ -17,7 +17,8 @@ function Status() {
     );
   }, []);
 
-  const submitStatus = () => {
+  const submitStatus = (event) => {
+    event.preventDefault();
     Axios.post("https://blueroses-final.herokuapp.com/api/status/post", {
       statusName: statusName,
     }).then(() => {

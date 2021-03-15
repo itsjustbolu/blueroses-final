@@ -34,14 +34,16 @@ function Suppliers() {
     );
   }, []);
 
-  const submitSuppliers = () => {
+  const submitSuppliers = (event) => {
+    event.preventDefault();
+    console.log(itemId, supplierName, supplierPhoneNumber, quantity);
     Axios.post("https://blueroses-final.herokuapp.com/api/suppliers/post", {
       itemId: itemId,
       supplierName: supplierName,
       supplierPhoneNumber: supplierPhoneNumber,
       quantity: quantity,
     }).then(() => {
-      alert("Successfully added menu item");
+      alert("Successfully added supplier");
     });
   };
 
@@ -80,8 +82,8 @@ function Suppliers() {
     });
   };
 
-  console.log(itemId)
-  
+  console.log(itemId);
+
   return (
     <div className="container">
       <h1>SUPPLIERS</h1>
@@ -95,7 +97,6 @@ function Suppliers() {
           </label>
 
           <select
-           
             class="form-select"
             aria-label="Default select example"
             name="itemId"

@@ -32,7 +32,8 @@ export function Customers() {
     );
   }, []);
 
-  const submitCustomer = () => {
+  const submitCustomer = (event) => {
+    event.preventDefault();
     Axios.post("https://blueroses-final.herokuapp.com/api/customers/post", {
       firstName: firstName,
       lastName: lastName,

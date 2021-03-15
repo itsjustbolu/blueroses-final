@@ -22,7 +22,8 @@ function Menu() {
     );
   }, []);
 
-  const submitMenuItems = () => {
+  const submitMenuItems = (event) => {
+    event.preventDefault();
     Axios.post("https://blueroses-final.herokuapp.com/api/menuitems/post", {
       itemName: itemName,
       itemPrice: itemPrice,

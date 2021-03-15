@@ -35,7 +35,8 @@ export function Payments() {
     );
   }, []);
 
-  const submitPayment = () => {
+  const submitPayment = (event) => {
+    event.preventDefault();
     Axios.post("https://blueroses-final.herokuapp.com/api/payments/post", {
       customerId: customerId,
       cardNumber: cardNumber,

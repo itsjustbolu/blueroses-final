@@ -28,7 +28,8 @@ export function Employees() {
     );
   }, []);
 
-  const submitEmployee = () => {
+  const submitEmployee = (event) => {
+    event.preventDefault();
     Axios.post("https://blueroses-final.herokuapp.com/api/employees/post", {
       employeeFirstName: employeeFirstName,
       employeeLastName: employeeLastName,
