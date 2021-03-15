@@ -80,6 +80,8 @@ function Suppliers() {
     });
   };
 
+  console.log(itemId)
+  
   return (
     <div className="container">
       <h1>SUPPLIERS</h1>
@@ -93,16 +95,15 @@ function Suppliers() {
           </label>
 
           <select
-            value="1"
+           
             class="form-select"
             aria-label="Default select example"
             name="itemId"
-            // onChange={(e) => setItemId(e.target.value)}
-            onChange={this.change}
+            onChange={(e) => setItemId(e.target.value)}
           >
-            {menuItemsList.map((val) => {
+            {menuItemsList.map((val, key) => {
               return (
-                <option value={val.itemId}>
+                <option value={val.itemId} key={key}>
                   {val.itemName} {val.itemId}
                 </option>
               );
