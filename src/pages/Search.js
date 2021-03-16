@@ -95,8 +95,8 @@ function Search() {
                           return val;
                         } else if (
                           val.firstName
-                            .toLowerCase()
-                            .includes(customerSearchTerm.toLowerCase())
+                            .toLocaleLowerCase()
+                            .includes(customerSearchTerm.toLocaleLowerCase())
                         ) {
                           return val;
                         }
@@ -162,8 +162,8 @@ function Search() {
                           return val;
                         } else if (
                           val.employeeFirstName
-                            .toLowerCase()
-                            .includes(employeeSearchTerm.toLowerCase())
+                            .toLocaleLowerCase()
+                            .includes(employeeSearchTerm.toLocaleLowerCase())
                         ) {
                           return val;
                         }
@@ -224,8 +224,8 @@ function Search() {
                           return val;
                         } else if (
                           val.itemName
-                            .toLowerCase()
-                            .includes(menuSearchTerm.toLowerCase())
+                            .toLocaleLowerCase()
+                            .includes(menuSearchTerm.toLocaleLowerCase())
                         ) {
                           return val;
                         }
@@ -284,8 +284,8 @@ function Search() {
                           return val;
                         } else if (
                           val.itemName
-                            .toLowerCase()
-                            .includes(suppliersSearchTerm.toLowerCase())
+                            .toLocaleLowerCase()
+                            .includes(suppliersSearchTerm.toLocaleLowerCase())
                         ) {
                           return val;
                         }
