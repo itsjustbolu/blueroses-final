@@ -81,10 +81,14 @@ export function Customers() {
   };
 
   const deleteCustomer = (customerId) => {
-    console.log("item deleted");
+    console.log("item deleted", customerList);
     Axios.delete(
       `https://blueroses-final.herokuapp.com/api/customers/delete/${customerId}`
     ).then((response) => {
+      const newCustomerList = customerList.filter((val) => {
+        return val.customerId !== customerId;
+      });
+      console.log(newCustomerList)
       setCustomerList(
         customerList.filter((val) => {
           return val.customerId !== customerId;

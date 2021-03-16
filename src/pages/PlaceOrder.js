@@ -25,6 +25,8 @@ export function PlaceOrder() {
   const [newStatus, setNewStatus] = useState([]);
   const [newEmployee, setNewEmployee] = useState([]);
 
+  const [getOrders, setGetOrders] = useState(true);
+
   useEffect(() => {
     Axios.get("https://blueroses-final.herokuapp.com/api/customers/get").then(
       (response) => {
@@ -37,8 +39,9 @@ export function PlaceOrder() {
   useEffect(() => {
     Axios.get("https://blueroses-final.herokuapp.com/api/menuitems/get").then(
       (response) => {
+        console.log("anything test", response);
         setMenuItemsList(response.data);
-        setItemId(response.data[0].customerId);
+        setItemId(response.data[0].itemId);
       }
     );
   }, []);
@@ -62,24 +65,36 @@ export function PlaceOrder() {
   }, []);
 
   useEffect(() => {
-    Axios.get("https://blueroses-final.herokuapp.com/api/orders/get").then(
+    if (getOrders) {
+      Axios.get("https://blueroses-final.herokuapp.com/api/orders/get").then(
+        (response) => {
+          setOrdersList(response.data);
+        }
+      );
+      setGetOrders(false);
+    }
+  }, [getOrders]);
+
+  useEffect(() => {
+    Axios.get("https://blueroses-final.herokuapp.com/api/payments/get").then(
       (response) => {
-        setOrdersList(response.data);
+        setPaymentList(response.data);
+        setPaymentId(response.data[0].paymentId);
       }
     );
   }, []);
 
-  useEffect(() => {
-    Axios.get(
-      "https://blueroses-final.herokuapp.com/api/payments-customer/get"
-    ).then((response) => {
-      setPaymentList(response.data);
-    });
-  }, []);
-
   const submitOrder = (event) => {
     event.preventDefault();
-    console.log(itemId, paymentId, statusId, employeeId);
+    console.log(
+      customerId,
+      itemId,
+      quantity,
+      orderDateTime,
+      paymentId,
+      statusId,
+      employeeId
+    );
     Axios.post("https://blueroses-final.herokuapp.com/api/orders/post", {
       customerId: customerId,
       itemId: itemId,
@@ -89,6 +104,7 @@ export function PlaceOrder() {
       statusId: statusId,
       employeeId: employeeId,
     }).then((result) => {
+      setGetOrders(true);
       console.log(result);
       alert("successfully placed order");
     });
@@ -129,6 +145,7 @@ export function PlaceOrder() {
     });
   };
 
+  console.log(paymentId);
   return (
     <div className="container">
       <h1>PLACE AN ORDER</h1>
@@ -168,12 +185,8 @@ export function PlaceOrder() {
               name="itemId"
               onChange={(e) => setItemId(e.target.value)}
             >
-              {menuItemsList.map((val, key) => {
-                return (
-                  <option value={val.itemId} key={key}>
-                    {val.itemName} {val.itemId}
-                  </option>
-                );
+              {menuItemsList.map((val) => {
+                return <option value={val.itemId}>{val.itemName}</option>;
               })}
             </select>
           </div>
