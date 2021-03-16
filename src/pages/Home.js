@@ -21,6 +21,13 @@ export class Home extends Component {
         <Row>
           <Col>
             <h2>Blueroses Employee Portal</h2>
+
+            <p>
+              Welcome to the blueroses restaurant employee portal page. Here you
+              can manage all aspects of the business, placing orders, adding and
+              deleting customers as well as their payment information, add
+              suppliers and menu items etc.
+            </p>
             <CardContainer>
               <Card style={{ width: "18rem", margin: "1em" }}>
                 <Card.Header>ORDERS</Card.Header>
@@ -33,7 +40,7 @@ export class Home extends Component {
                   </Link>
                 </Card.Body>
               </Card>
-
+              {/* 
               <Card style={{ width: "18rem", margin: "1em" }}>
                 <Card.Header>ORDERS</Card.Header>
                 <Card.Body>
@@ -45,7 +52,7 @@ export class Home extends Component {
                     <Button variant="primary">VIEW</Button>
                   </Link>
                 </Card.Body>
-              </Card>
+              </Card> */}
 
               <Card style={{ width: "18rem", margin: "1em" }}>
                 <Card.Header>MENU</Card.Header>
@@ -68,12 +75,12 @@ export class Home extends Component {
                     Add a new customer to the Blueroses Database
                   </Card.Text>
                   <Link to="/customers">
-                    <Button variant="primary">ADD</Button>
+                    <Button variant="primary">ADD CUSTOMER</Button>
                   </Link>
                 </Card.Body>
               </Card>
 
-              <Card style={{ width: "18rem", margin: "1em" }}>
+              {/* <Card style={{ width: "18rem", margin: "1em" }}>
                 <Card.Header>CUSTOMERS</Card.Header>
                 <Card.Body>
                   <Card.Title>View All Customers </Card.Title>
@@ -82,7 +89,7 @@ export class Home extends Component {
                     <Button variant="primary">VIEW</Button>
                   </Link>
                 </Card.Body>
-              </Card>
+              </Card> */}
 
               <Card style={{ width: "18rem", margin: "1em" }}>
                 <Card.Header>SUPPLIER</Card.Header>
@@ -95,7 +102,7 @@ export class Home extends Component {
                 </Card.Body>
               </Card>
 
-              <Card style={{ width: "18rem", margin: "1em" }}>
+              {/* <Card style={{ width: "18rem", margin: "1em" }}>
                 <Card.Header>SUPPLIER</Card.Header>
                 <Card.Body>
                   <Card.Title>View All Suppliers </Card.Title>
@@ -104,7 +111,7 @@ export class Home extends Component {
                     <Button variant="primary">VIEW ALL</Button>
                   </Link>
                 </Card.Body>
-              </Card>
+              </Card> */}
 
               <Card style={{ width: "18rem", margin: "1em" }}>
                 <Card.Header>EMPLOYEE</Card.Header>
@@ -119,7 +126,7 @@ export class Home extends Component {
                 </Card.Body>
               </Card>
 
-              <Card style={{ width: "18rem", margin: "1em" }}>
+              {/* <Card style={{ width: "18rem", margin: "1em" }}>
                 <Card.Header>EMPLOYEES</Card.Header>
                 <Card.Body>
                   <Card.Title>View All Employees </Card.Title>
@@ -128,7 +135,7 @@ export class Home extends Component {
                     <Button variant="primary">EMPLOYEES</Button>
                   </Link>
                 </Card.Body>
-              </Card>
+              </Card> */}
             </CardContainer>
           </Col>
         </Row>

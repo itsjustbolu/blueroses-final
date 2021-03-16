@@ -284,8 +284,8 @@ function Search() {
                           return val;
                         } else if (
                           val.itemName
-                            .toLocaleLowerCase()
-                            .includes(suppliersSearchTerm.toLocaleLowerCase())
+                            .toLowerCase()
+                            .includes(suppliersSearchTerm)
                         ) {
                           return val;
                         }

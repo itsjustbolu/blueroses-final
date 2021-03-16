@@ -21,6 +21,10 @@ export function PlaceOrder() {
 
   const [ordersList, setOrdersList] = useState([]);
 
+  const [newQuantity, setNewQuantity] = useState([]);
+  const [newStatus, setNewStatus] = useState([]);
+  const [newEmployee, setNewEmployee] = useState([]);
+
   useEffect(() => {
     Axios.get("https://blueroses-final.herokuapp.com/api/customers/get").then(
       (response) => {
@@ -87,6 +91,41 @@ export function PlaceOrder() {
     }).then((result) => {
       console.log(result);
       alert("successfully placed order");
+    });
+  };
+
+  const updateOrder = (orderId) => {
+    Axios.put("https://blueroses-final.herokuapp.com/api/customers/update", {
+      quantity: newQuantity,
+      status: newStatus,
+      employee: newEmployee,
+      orderId: orderId,
+    }).then((response) => {
+      setOrdersList(
+        ordersList.map((val) => {
+          return val.orderId === orderId
+            ? {
+                orderId: val.orderId,
+                quantity: newQuantity,
+                status: newStatus,
+                employee: newEmployee,
+              }
+            : val;
+        })
+      );
+    });
+  };
+
+  const deleteOrder = (orderId) => {
+    console.log("order deleted");
+    Axios.delete(
+      `https://blueroses-final.herokuapp.com/api/orders/delete/${orderId}`
+    ).then((response) => {
+      setOrdersList(
+        ordersList.filter((val) => {
+          return val.orderId !== orderId;
+        })
+      );
     });
   };
 
@@ -253,17 +292,78 @@ export function PlaceOrder() {
                     <td>{val.employeeLastName}</td>
 
                     <td>
-                      {/* <input
-                        type="text"
-                        placeholder="add new first name"
-                        onChange={(event) =>
-                          setNewFirstName(event.target.value)
-                        }
-                      /> */}
-                      <Button variant="warning" style={{ margin: "5px" }}>
+                      <div>
+                        <label
+                          style={{ paddingRight: "1em" }}
+                          className="form-label"
+                        >
+                          New Quantity:{" "}
+                        </label>
+                        <input
+                          type="number"
+                          placeholder="add new quantity"
+                          onChange={(event) =>
+                            setNewQuantity(event.target.value)
+                          }
+                        />
+                        <label
+                          style={{ paddingRight: "1em" }}
+                          className="form-label"
+                        >
+                          New Status:{" "}
+                        </label>
+                        <select
+                          class="form-select"
+                          aria-label="Default select example"
+                          name="statusId"
+                          onChange={(e) => setNewStatus(e.target.value)}
+                        >
+                          {statusList.map((val) => {
+                            return (
+                              <option value={val.statusId}>
+                                {val.statusName}
+                              </option>
+                            );
+                          })}
+                        </select>
+
+                        <label
+                          style={{ paddingRight: "1em" }}
+                          className="form-label"
+                        >
+                          New Employee:{" "}
+                        </label>
+                        <select
+                          class="form-select"
+                          aria-label="Default select example"
+                          name="employeeId"
+                          onChange={(e) => setNewEmployee(e.target.value)}
+                        >
+                          {employeeList.map((val) => {
+                            return (
+                              <option value={val.employeeId}>
+                                {val.employeeFirstName} {val.employeeLastName}
+                              </option>
+                            );
+                          })}
+                        </select>
+                      </div>
+                      <Button
+                        variant="warning"
+                        style={{ margin: "5px" }}
+                        onClick={() => {
+                          updateOrder(val.orderId);
+                        }}
+                      >
                         Update
                       </Button>{" "}
-                      <Button variant="danger" style={{ margin: "5px" }}>
+                      <Button
+                        variant="danger"
+                        style={{ margin: "5px" }}
+                        onClick={() => {
+                          deleteOrder(val.orderId);
+                        }}
+                      >
                         Delete
                       </Button>{" "}
                     </td>
